@@ -80,11 +80,18 @@ public class Request {
         double distance = Math.sqrt((a*a)+(b*b));
         DecimalFormat df = new DecimalFormat();
         df.setMaximumFractionDigits(1);
-        String text = ChatColor.translateAlternateColorCodes('&',
-                "%prefix% %primary%" + sender.getPlayer().getName() +
-                        "\n%primary%Distance: %secondary%" + df.format(distance) + "m" +
-                        "\n%primary%World: %secondary%" + d2.getWorld().getName() +
-                        "\n%primary%X: %secondary%" + d2.getBlockX() + " %primary%Y: %secondary%" + d2.getBlockY() + " %primary%Z: %secondary%" + d2.getBlockZ());
+        String text;
+        if(!sender.getPlayer().getWorld().equals(recipient.getPlayer().getWorld())) {
+            text = ChatColor.translateAlternateColorCodes('&',
+                    "%prefix% %secondary%" + sender.getPlayer().getName() +
+                            "\n%primary%World: %secondary%" + d2.getWorld().getName() +
+                            "\n%primary%X: %secondary%" + d2.getBlockX() + " %primary%Y: %secondary%" + d2.getBlockY() + " %primary%Z: %secondary%" + d2.getBlockZ());
+        }else{
+            text = ChatColor.translateAlternateColorCodes('&',
+                    "%prefix% %secondary%" + sender.getPlayer().getName() +
+                            "\n%primary%Distance: %secondary%" + df.format(distance) + "m" +
+                            "\n%primary%X: %secondary%" + d2.getBlockX() + " %primary%Y: %secondary%" + d2.getBlockY() + " %primary%Z: %secondary%" + d2.getBlockZ());
+        }
         return text;
     }
 
