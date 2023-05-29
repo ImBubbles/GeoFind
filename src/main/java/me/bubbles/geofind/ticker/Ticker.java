@@ -11,18 +11,14 @@ public class Ticker {
 
     public Ticker(GeoFind plugin) {
         this.plugin=plugin;
-        Count();
     }
 
     private void Count() {
         BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
-        scheduler.scheduleSyncDelayedTask(plugin, new Runnable() {
-            @Override
-            public void run() {
-                if(enabled) {
-                    plugin.onTick();
-                    Count();
-                }
+        scheduler.scheduleSyncDelayedTask(plugin, () -> {
+            if(enabled) {
+                plugin.onTick();
+                Count();
             }
         }, 1);
     }

@@ -33,13 +33,13 @@ public class Request {
             complete();
             return false;
         } else {
-            sender.sendMessage("%prefix% %primary%Request sent to" + "%secondary%" + recipient.getPlayer().getName() + "%primary%.");
-            String message = "%prefix% %primary%New request from %secondary%" + sender.getPlayer().getName() + "%primary%." +
-                    "\n%primary%Use %secondary%/geodecline "+sender.getPlayer().getName()+"%primary% to decline this request," +
-                    "or %secondary%/geoaccept "+sender.getPlayer().getName()+" %primary%to accept this request.";
+            sender.sendMessage("%prefix% %primary%Request sent to %secondary%" + recipient.getPlayer().getName() + "%primary%.");
+            String message = "%prefix% %primary%New request from %secondary%" + sender.getPlayer().getName() + "%primary%" +
+                    "\n%primary%Use %secondary%/geofind decline "+sender.getPlayer().getName()+"%primary% to decline this request\n" +
+                    "Use %secondary%/geofind accept "+sender.getPlayer().getName()+" %primary%to accept this request" +
+                    "\n%primary%The request will automatically timeout after %secondary%"+plugin.getRequestManager().getRequestTimeout()/20+" seconds%primary%.";
             recipient.sendMessage(
-                    "%prefix% %primary%New request from %secondary%" + sender.getPlayer().getName() + "%primary%." +
-                            "\n%primary%Use %secondary%/geodecline <player> %primary%to decline this request, or %secondary%/geoaccept <player> %primary%to accept this request."
+                    message
             );
             return false;
         }
@@ -111,7 +111,7 @@ public class Request {
                 "%prefix% %primary%Request to %secondary%" + recipient.getPlayer().getName() + " %primary%has been cancelled."
         );
         recipient.sendMessage(
-                "%prefix% %primary%The request from %secondary%" + sender.getPlayer().getName() + "%primary% has been cancelled by the sender."
+                "%prefix% %primary%The request from %secondary%" + sender.getPlayer().getName() + " %primary%has been cancelled by the sender."
         );
         end();
     }

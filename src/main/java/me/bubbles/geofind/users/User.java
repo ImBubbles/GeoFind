@@ -101,7 +101,7 @@ public class User {
     }
 
     public boolean hasOutgoingRequest() {
-        return getOutgoingRequest()==null;
+        return getOutgoingRequest()!=null;
     }
 
     public List<OfflinePlayer> getWhitelist() {

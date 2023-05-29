@@ -2,3 +2,7 @@ name: GeoFind
 version: '${project.version}'
 main: me.bubbles.geofind.GeoFind
 api-version: 1.19
+commands:
+  geofind:
+    usage: </command>
+    description: Base GeoFind command

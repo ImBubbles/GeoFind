@@ -22,12 +22,12 @@ public class BaseCommand extends Command {
     public BaseCommand(GeoFind plugin) {
         super("geofind", plugin);
         addArguments(
-                new Reload(plugin,index),
                 new Block(plugin,index),
                 new Whitelist(plugin,index),
                 new Accept(plugin,index),
                 new Decline(plugin,index),
-                new Cancel(plugin,index)
+                new Cancel(plugin,index),
+                new Reload(plugin,index)
         );
     }
 
@@ -53,6 +53,7 @@ public class BaseCommand extends Command {
                     return true;
                 }
                 plugin.getRequestManager().createRequest(player,Bukkit.getPlayer(args[0]));
+                return true;
             }
             for(Argument argument : arguments) { // ARGUMENTS
                 if(argument.getArg().equalsIgnoreCase(args[index])) {

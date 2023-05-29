@@ -41,6 +41,7 @@ public final class GeoFind extends JavaPlugin {
         commandManager=new CommandManager(this);
         eventManager=new EventManager(this);
         userManager=new UserManager(this);
+        requestManager=new RequestManager(this);
 
         // MESSAGES
         messages=(new Messages(configManager.getConfig("messages.yml").getFileConfiguration()));
@@ -55,11 +56,14 @@ public final class GeoFind extends JavaPlugin {
             }
         }
 
+        ticker.setEnabled(true);
+
     }
 
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+        ticker.setEnabled(false);
     }
 
     // RELOAD CONFIGS

@@ -33,7 +33,7 @@ public class RequestManager {
     }
 
     public int getRequestTimeout() {
-        return plugin.getConfig().getInt("requestTimeout");
+        return plugin.getConfig().getInt("requestTimeout")*20;
     }
 
     public void onTick() {
