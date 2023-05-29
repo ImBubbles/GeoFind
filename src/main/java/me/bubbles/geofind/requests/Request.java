@@ -29,6 +29,7 @@ public class Request {
             sender.sendMessage(getLocationMessage());
         } else if(recipient.getBlocklist().contains(Bukkit.getOfflinePlayer(sender.getPlayer().getUniqueId()))) {
             sender.sendMessage("%prefix% %primary%You cannot send a request to %secondary%"+recipient.getPlayer().getName()+"%primary%.");
+            end();
         } else if(recipient.getWhitelist().contains(Bukkit.getOfflinePlayer(sender.getPlayer().getUniqueId()))) {
             complete();
             return false;

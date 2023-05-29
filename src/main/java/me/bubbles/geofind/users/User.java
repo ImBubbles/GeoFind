@@ -128,12 +128,14 @@ public class User {
         List<String> result = data.getStringList("whitelist");
         result.add(player.getUniqueId().toString());
         data.set("whitelist",result);
+        plugin.getConfigManager().saveAll();
     }
 
     public void removeFromWhitelist(Player player) {
         List<String> result = data.getStringList("whitelist");
         result.remove(player.getUniqueId().toString());
         data.set("whitelist",result);
+        plugin.getConfigManager().saveAll();
     }
 
     // BLOCK LIST
@@ -142,12 +144,14 @@ public class User {
         List<String> result = data.getStringList("blocklist");
         result.add(player.getUniqueId().toString());
         data.set("blocklist",result);
+        plugin.getConfigManager().saveAll();
     }
 
     public void removeFromBlocklist(Player player) {
         List<String> result = data.getStringList("blocklist");
         result.remove(player.getUniqueId().toString());
         data.set("blocklist",result);
+        plugin.getConfigManager().saveAll();
     }
 
 }

@@ -28,8 +28,8 @@ public class RequestManager {
         createRequest(plugin.getUserManager().getUser(sender),plugin.getUserManager().getUser(recipient));
     }
 
-    public boolean removeRequest(Request request) {
-        return requests.remove(request);
+    public void removeRequest(Request request) {
+        requests.remove(request);
     }
 
     public int getRequestTimeout() {
