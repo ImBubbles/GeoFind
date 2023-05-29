@@ -77,7 +77,7 @@ public class Request {
         Location d2 = recipient.getPlayer().getLocation();
         double a = d1.getBlockX() - d2.getBlockX();
         double b = d1.getBlockZ() - d2.getBlockZ();
-        double distance = Math.sqrt((a*a)+(b*b));
+        double distance = Math.abs(Math.sqrt((a*a)+(b*b)));
         DecimalFormat df = new DecimalFormat();
         df.setMaximumFractionDigits(1);
         String text;
