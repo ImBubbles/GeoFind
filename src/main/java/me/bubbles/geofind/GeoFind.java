@@ -23,8 +23,6 @@ public final class GeoFind extends JavaPlugin {
     @Override
     public void onEnable() {
 
-        // PLUGIN IS NOT FINISHED
-
         //// INSTANCE VARIABLES
 
         // Configs
