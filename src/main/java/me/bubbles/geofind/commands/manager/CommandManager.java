@@ -1,7 +1,7 @@
 package me.bubbles.geofind.commands.manager;
 
 import me.bubbles.geofind.GeoFind;
-import me.bubbles.geofind.commands.BaseCommand;
+import me.bubbles.geofind.commands.base.BaseCommand;
 
 import java.util.ArrayList;
 

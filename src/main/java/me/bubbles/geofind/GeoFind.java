@@ -7,6 +7,7 @@ import me.bubbles.geofind.messages.Messages;
 import me.bubbles.geofind.requests.RequestManager;
 import me.bubbles.geofind.ticker.Ticker;
 import me.bubbles.geofind.users.UserManager;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class GeoFind extends JavaPlugin {
@@ -33,8 +34,7 @@ public final class GeoFind extends JavaPlugin {
         configManager.addConfig(
                 "config.yml",
                 "messages.yml",
-                "blocked.yml",
-                "whitelist.yml"
+                "data.yml"
         );
 
         // MANAGERS
@@ -47,6 +47,13 @@ public final class GeoFind extends JavaPlugin {
 
         // Ticker
         ticker=new Ticker(this);
+
+        //// USERS (in case of plugin is loaded after startup)
+        if(!(getServer().getOnlinePlayers().size()==0)) {
+            for(Player player : getServer().getOnlinePlayers()) {
+                userManager.addPlayer(player);
+            }
+        }
 
     }
 

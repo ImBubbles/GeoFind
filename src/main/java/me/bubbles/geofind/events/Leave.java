@@ -18,9 +18,15 @@ public class Leave extends Event {
 
         User user = plugin.getUserManager().getUser(e.getPlayer());
 
-        if(user.hasRequest()) {
-            Request request = user.getRequest();
+        if(user.hasOutgoingRequest()) {
+            Request request = user.getOutgoingRequest();
             request.cancel();
+        }
+
+        if(user.hasIncomingRequest()) {
+            for(Request request : user.getIncomingRequest()) {
+                request.cancel();
+            }
         }
 
     }

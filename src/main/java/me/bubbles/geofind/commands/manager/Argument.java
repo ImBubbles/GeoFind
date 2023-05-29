@@ -51,7 +51,7 @@ public class Argument {
     }
 
     public void setPermission(String permission) {
-        String node = "hotpotato." + permission;
+        String node = "geofind." + permission;
         this.permission=node;
     }
 
@@ -59,11 +59,15 @@ public class Argument {
         if(permission==null)
             return true;
         if(!player.hasPermission(permission)) {
-            plugin.getUserManager().getUser(player).sendMessage(Messages.Message.NO_PERMS);
+            plugin.getUserManager().getUser(player).sendMessage(Messages.Message.NO_PERMS.getStr().replace("%node%",permission));
             return false;
         }else{
             return true;
         }
+    }
+
+    public String getPermissionMsg() {
+        return Messages.Message.NO_PERMS.getStr().replace("%node%",permission);
     }
 
     public String getArgsMessage() {
@@ -87,10 +91,6 @@ public class Argument {
 
     public Argument getBase() {
         return base;
-    }
-
-    public int getIndex() {
-        return index;
     }
 
 }

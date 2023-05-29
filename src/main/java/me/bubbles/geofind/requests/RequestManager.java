@@ -1,6 +1,8 @@
 package me.bubbles.geofind.requests;
 
 import me.bubbles.geofind.GeoFind;
+import me.bubbles.geofind.users.User;
+import org.bukkit.entity.Player;
 
 import java.util.HashSet;
 
@@ -18,8 +20,12 @@ public class RequestManager {
         return requests;
     }
 
-    public boolean addRequest(Request request) {
-        return requests.add(request);
+    public void createRequest(User sender, User recipient) {
+        requests.add(new Request(plugin,sender,recipient));
+    }
+
+    public void createRequest(Player sender, Player recipient) {
+        createRequest(plugin.getUserManager().getUser(sender),plugin.getUserManager().getUser(recipient));
     }
 
     public boolean removeRequest(Request request) {

@@ -1,4 +1,4 @@
-package me.bubbles.geofind.commands;
+package me.bubbles.geofind.commands.base;
 
 import me.bubbles.geofind.GeoFind;
 import me.bubbles.geofind.commands.manager.Argument;

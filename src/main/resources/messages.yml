@@ -1,0 +1,4 @@
+PREFIX: '&a[&e&lGeoFind&a]'
+COLOR_PRIMARY: '&a'
+COLOR_SECONDARY: '&e'
+NO_PERMS: '&cYou do not have permission to do that! &4%node%'
