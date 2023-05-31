@@ -14,14 +14,14 @@ public class Request {
     private User sender;
     private User recipient;
     private int ticks;
+    private boolean endOnTick;
 
     public Request(GeoFind plugin, User sender, User recipient) {
         this.plugin=plugin;
         this.sender=sender;
         this.recipient=recipient;
         this.ticks=0;
-        if(externalFactors())
-            end();
+        endOnTick=externalFactors();
     }
 
     private boolean externalFactors() {
@@ -48,6 +48,9 @@ public class Request {
     }
 
     public void onTick() {
+        if(endOnTick) {
+            end();
+        }
         ticks=clamp(ticks,ticks+1,0,plugin.getRequestManager().getRequestTimeout());
         if(ticks==plugin.getRequestManager().getRequestTimeout()) {
             expire();
@@ -83,12 +86,12 @@ public class Request {
         String text;
         if(!sender.getPlayer().getWorld().equals(recipient.getPlayer().getWorld())) {
             text = ChatColor.translateAlternateColorCodes('&',
-                    "%prefix% %secondary%" + sender.getPlayer().getName() +
+                    "%prefix% %secondary%" + recipient.getPlayer().getName() +
                             "\n%primary%World: %secondary%" + d2.getWorld().getName() +
                             "\n%primary%X: %secondary%" + d2.getBlockX() + " %primary%Y: %secondary%" + d2.getBlockY() + " %primary%Z: %secondary%" + d2.getBlockZ());
         }else{
             text = ChatColor.translateAlternateColorCodes('&',
-                    "%prefix% %secondary%" + sender.getPlayer().getName() +
+                    "%prefix% %secondary%" + recipient.getPlayer().getName() +
                             "\n%primary%Distance: %secondary%" + df.format(distance) + "m" +
                             "\n%primary%X: %secondary%" + d2.getBlockX() + " %primary%Y: %secondary%" + d2.getBlockY() + " %primary%Z: %secondary%" + d2.getBlockZ());
         }
