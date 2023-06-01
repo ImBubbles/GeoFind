@@ -21,8 +21,8 @@ public class RequestManager {
     }
 
     public void createRequest(User sender, User recipient) {
-        plugin.getTicker().setEnabled(!requests.isEmpty());
         requests.add(new Request(plugin,sender,recipient));
+        plugin.getTicker().setEnabled(!requests.isEmpty());
     }
 
     public void createRequest(Player sender, Player recipient) {
