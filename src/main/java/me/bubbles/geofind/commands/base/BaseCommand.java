@@ -15,8 +15,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class BaseCommand extends Command {
-
-    private List<Argument> arguments = new ArrayList<>();
     private final int index=0;
 
     public BaseCommand(GeoFind plugin) {
@@ -55,7 +53,7 @@ public class BaseCommand extends Command {
                 plugin.getRequestManager().createRequest(player,Bukkit.getPlayer(args[0]));
                 return true;
             }
-            for(Argument argument : arguments) { // ARGUMENTS
+            for(Argument argument : getArguments()) { // ARGUMENTS
                 if(argument.getArg().equalsIgnoreCase(args[index])) {
                     argument.run(sender, args);
                     return true;
