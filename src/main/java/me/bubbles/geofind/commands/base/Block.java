@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 public class Block extends Argument {
 
     public Block(GeoFind plugin, int index) {
-        super(plugin, "block", "block <arg>", index);
+        super(plugin, "block", "block <player>", index);
         setPermission("block");
     }
 

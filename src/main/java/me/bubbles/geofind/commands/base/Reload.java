@@ -17,7 +17,9 @@ public class Reload extends Argument {
             Player p = (Player) sender;
             if(!hasPermission(p))
                 return;
+            plugin.reload();
             plugin.getUserManager().getUser(p).sendMessage("%prefix% %primary%Config reloaded.");
+            return;
         }
         plugin.reload();
     }

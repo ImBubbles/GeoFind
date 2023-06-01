@@ -59,7 +59,7 @@ public class Argument {
         if(permission==null)
             return true;
         if(!player.hasPermission(permission)) {
-            plugin.getUserManager().getUser(player).sendMessage(Messages.Message.NO_PERMS.getStr().replace("%node%",permission));
+            plugin.getUserManager().getUser(player).sendMessage(plugin.getMessages().getNoPerms().replace("%node%",permission));
             return false;
         }else{
             return true;
@@ -67,14 +67,14 @@ public class Argument {
     }
 
     public String getPermissionMsg() {
-        return Messages.Message.NO_PERMS.getStr().replace("%node%",permission);
+        return plugin.getMessages().getNoPerms().replace("%node%",permission);
     }
 
     public String getArgsMessage() {
 
-        String prefix = Messages.Message.PREFIX.getStr(); // prefix
-        String pri = Messages.Message.PRIMARY.getStr(); // primary color
-        String sec = Messages.Message.SECONDARY.getStr(); // secondary color
+        String prefix = plugin.getMessages().getPrefix(); // prefix
+        String pri = plugin.getMessages().getPrimary(); // primary color
+        String sec = plugin.getMessages().getSecondary(); // secondary color
 
         StringBuilder stringBuilder = new StringBuilder();
         String topLine = prefix + pri + " " + display;

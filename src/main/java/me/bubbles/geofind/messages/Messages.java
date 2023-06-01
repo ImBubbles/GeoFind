@@ -3,25 +3,26 @@ package me.bubbles.geofind.messages;
 import org.bukkit.configuration.file.FileConfiguration;
 
 public class Messages {
-    private static FileConfiguration config;
+    private FileConfiguration config;
 
     public Messages(FileConfiguration configuration) {
         config=configuration;
     }
 
-    public enum Message {
-        NO_PERMS(config.getString("NO_PERMS")),
-        PREFIX(config.getString("PREFIX")),
-        PRIMARY(config.getString("COLOR_PRIMARY")),
-        SECONDARY(config.getString("COLOR_SECONDARY"));
+    public String getNoPerms() {
+        return config.getString("NO_PERMS");
+    }
 
-        private String str;
-        Message(String str) {
-            this.str=str;
-        }
-        public String getStr() {
-            return str;
-        }
+    public String getPrefix() {
+        return config.getString("PREFIX");
+    }
+
+    public String getPrimary() {
+        return config.getString("COLOR_PRIMARY");
+    }
+
+    public String getSecondary() {
+        return config.getString("COLOR_SECONDARY");
     }
 
 }

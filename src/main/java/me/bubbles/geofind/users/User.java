@@ -48,21 +48,12 @@ public class User {
 
     }
 
-    public void sendMessage(Messages.Message message) {
-        String newStr = ChatColor.translateAlternateColorCodes('&',message.getStr()
-                .replace("%name%",player.getName())
-                .replace("%prefix%",Messages.Message.PREFIX.getStr())
-                .replace("%primary%", Messages.Message.PRIMARY.getStr())
-                .replace("%secondary%", Messages.Message.SECONDARY.getStr()));
-        player.sendMessage(newStr);
-    }
-
     public void sendMessage(String message) {
         String newStr = ChatColor.translateAlternateColorCodes('&',message
                 .replace("%name%",player.getName())
-                .replace("%prefix%",Messages.Message.PREFIX.getStr())
-                .replace("%primary%", Messages.Message.PRIMARY.getStr())
-                .replace("%secondary%", Messages.Message.SECONDARY.getStr()));
+                .replace("%prefix%",plugin.getMessages().getPrefix())
+                .replace("%primary%", plugin.getMessages().getPrimary())
+                .replace("%secondary%", plugin.getMessages().getSecondary()));
         player.sendMessage(newStr);
     }
 

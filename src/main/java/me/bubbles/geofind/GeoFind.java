@@ -74,6 +74,9 @@ public final class GeoFind extends JavaPlugin {
     }
 
     // GETTERS
+    public Messages getMessages() {
+        return messages;
+    }
     public CommandManager getCommandManager() {
         return commandManager;
     }

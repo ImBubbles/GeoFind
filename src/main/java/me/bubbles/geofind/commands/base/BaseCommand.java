@@ -10,10 +10,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public class BaseCommand extends Command {
     private final int index=0;
 
@@ -39,7 +35,7 @@ public class BaseCommand extends Command {
                 Player player = ((Player) sender);
                 User user = plugin.getUserManager().getUser(player);
                 if(!player.hasPermission("geofind.find")) {
-                    user.sendMessage(Messages.Message.NO_PERMS.getStr().replace("%node%","geofind.find"));
+                    user.sendMessage(plugin.getMessages().getNoPerms().replace("%node%","geofind.find"));
                     return true;
                 }
                 if(player.equals(Bukkit.getPlayer(args[0]))) {

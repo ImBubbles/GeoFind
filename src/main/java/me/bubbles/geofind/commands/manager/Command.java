@@ -48,14 +48,14 @@ public class Command implements CommandExecutor {
     public void setPermission(String permission) {
         String node = "geofind." + permission;
         this.permission=node;
-        this.no_perms=Messages.Message.NO_PERMS.getStr().replace("%node%",node);
+        this.no_perms=plugin.getMessages().getNoPerms().replace("%node%",node);
     }
 
     public String getArgsMessage() {
 
-        String prefix = Messages.Message.PREFIX.getStr();
-        String pri = Messages.Message.PRIMARY.getStr(); // primary color
-        String sec = Messages.Message.SECONDARY.getStr(); // secondary color
+        String prefix = plugin.getMessages().getPrefix();
+        String pri = plugin.getMessages().getPrimary(); // primary color
+        String sec = plugin.getMessages().getSecondary(); // secondary color
 
         StringBuilder stringBuilder = new StringBuilder();
         String topLine = prefix + pri + " Commands:";
