@@ -63,39 +63,9 @@ public class BaseCommand extends Command {
             }
         }
 
-        sender.sendMessage(ChatColor.translateAlternateColorCodes('&',getArgs()));
+        sender.sendMessage(ChatColor.translateAlternateColorCodes('&',getArgsMessage()));
 
         return true;
-    }
-
-    private String getArgs() {
-
-        String prefix = Messages.Message.PREFIX.getStr();
-        String pri = Messages.Message.PRIMARY.getStr(); // primary color
-        String sec = Messages.Message.SECONDARY.getStr(); // secondary color
-
-        StringBuilder stringBuilder = new StringBuilder();
-        String topLine = prefix + pri + " Commands:";
-        stringBuilder.append(topLine);
-
-        // IF YOU ARE COPYING MY CODE, REMOVE THIS LINE - THE LINE BELOW IS SPECIFIC TO THIS PLUGIN
-        stringBuilder.append("\n").append(pri).append("/").append(getCommand()).append(" ").append(sec).append("<player>");
-
-        for(Argument arg : arguments) {
-            String command = "\n" + pri + "/" + getCommand() + sec + " " + arg.getDisplay() + "\n";
-            stringBuilder.append(command);
-        }
-
-        return stringBuilder.toString();
-
-    }
-
-    private void addArguments(Argument... args) {
-        arguments.addAll(Arrays.asList(args));
-    }
-
-    public List<Argument> getArguments() {
-        return arguments;
     }
 
 }

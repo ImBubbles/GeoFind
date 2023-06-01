@@ -7,12 +7,18 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Command implements CommandExecutor {
 
     public GeoFind plugin;
     public String no_perms;
     private String command;
     private String permission;
+    private List<Argument> arguments = new ArrayList<>();
+    public final int INDEX=0;
 
     public Command(String command, GeoFind plugin) {
         this.command=command;
@@ -43,6 +49,36 @@ public class Command implements CommandExecutor {
         String node = "geofind." + permission;
         this.permission=node;
         this.no_perms=Messages.Message.NO_PERMS.getStr().replace("%node%",node);
+    }
+
+    public String getArgsMessage() {
+
+        String prefix = Messages.Message.PREFIX.getStr();
+        String pri = Messages.Message.PRIMARY.getStr(); // primary color
+        String sec = Messages.Message.SECONDARY.getStr(); // secondary color
+
+        StringBuilder stringBuilder = new StringBuilder();
+        String topLine = prefix + pri + " Commands:";
+        stringBuilder.append(topLine);
+
+        // IF YOU ARE COPYING MY CODE, REMOVE THIS LINE - THE LINE BELOW IS SPECIFIC TO THIS PLUGIN
+        stringBuilder.append("\n").append(pri).append("/").append(getCommand()).append(" ").append(sec).append("<player>");
+
+        for(Argument arg : arguments) {
+            String command = "\n" + pri + "/" + getCommand() + sec + " " + arg.getDisplay() + "\n";
+            stringBuilder.append(command);
+        }
+
+        return stringBuilder.toString();
+
+    }
+
+    public void addArguments(Argument... args) {
+        arguments.addAll(Arrays.asList(args));
+    }
+
+    public List<Argument> getArguments() {
+        return arguments;
     }
 
 }

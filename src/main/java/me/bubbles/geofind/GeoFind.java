@@ -54,8 +54,6 @@ public final class GeoFind extends JavaPlugin {
             }
         }
 
-        ticker.setEnabled(true);
-
     }
 
     @Override

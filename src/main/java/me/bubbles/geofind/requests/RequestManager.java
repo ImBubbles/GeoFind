@@ -21,6 +21,7 @@ public class RequestManager {
     }
 
     public void createRequest(User sender, User recipient) {
+        plugin.getTicker().setEnabled(!requests.isEmpty());
         requests.add(new Request(plugin,sender,recipient));
     }
 
@@ -30,6 +31,7 @@ public class RequestManager {
 
     public void removeRequest(Request request) {
         requests.remove(request);
+        plugin.getTicker().setEnabled(!requests.isEmpty());
     }
 
     public int getRequestTimeout() {

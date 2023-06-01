@@ -32,6 +32,9 @@ public class Ticker {
     }
 
     public Ticker setEnabled(boolean bool) {
+        if(enabled==bool) {
+            return this;
+        }
         enabled=bool;
         if(enabled) {
             Count();
