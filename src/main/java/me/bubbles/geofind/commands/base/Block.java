@@ -34,7 +34,14 @@ public class Block extends Argument {
             return;
         }
         Player player2 = Bukkit.getPlayer(args[index]);
-        if(user.getBlocklist().contains(Bukkit.getOfflinePlayer(player2.getUniqueId()))) {
+        if(player2.equals(player)) {
+            user.sendMessage("%prefix% %primary%You can't block yourself silly!");
+        }
+        if(user.getWhitelist().contains(player2.getUniqueId())) {
+            user.sendMessage("%prefix% %primary%Remove player from your block list first.");
+            return;
+        }
+        if(user.getBlocklist().contains(player2.getUniqueId())) {
             user.sendMessage("%prefix% %primary%Unblocked player %secondary%"+args[index]+"%primary%.");
             user.removeFromBlocklist(player2);
             return;

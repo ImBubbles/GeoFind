@@ -20,13 +20,15 @@ public class RequestManager {
         return requests;
     }
 
-    public void createRequest(User sender, User recipient) {
-        requests.add(new Request(plugin,sender,recipient));
+    public Request createRequest(User sender, User recipient) {
+        Request request = new Request(plugin,sender,recipient);
+        requests.add(request);
         plugin.getTicker().setEnabled(!requests.isEmpty());
+        return request;
     }
 
-    public void createRequest(Player sender, Player recipient) {
-        createRequest(plugin.getUserManager().getUser(sender),plugin.getUserManager().getUser(recipient));
+    public Request createRequest(Player sender, Player recipient) {
+        return createRequest(plugin.getUserManager().getUser(sender),plugin.getUserManager().getUser(recipient));
     }
 
     public void removeRequest(Request request) {

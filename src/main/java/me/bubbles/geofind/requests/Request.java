@@ -27,10 +27,10 @@ public class Request {
     private boolean externalFactors() {
         if(sender.getPlayer().hasPermission("geofind.bypass")) {
             sender.sendMessage(getLocationMessage());
-        } else if(recipient.getBlocklist().contains(Bukkit.getOfflinePlayer(sender.getPlayer().getUniqueId()))) {
+        } else if(recipient.getBlocklist().contains(sender.getPlayer().getUniqueId())) {
             sender.sendMessage("%prefix% %primary%You cannot send a request to %secondary%"+recipient.getPlayer().getName()+"%primary%.");
-            end();
-        } else if(recipient.getWhitelist().contains(Bukkit.getOfflinePlayer(sender.getPlayer().getUniqueId()))) {
+            return true;
+        } else if(recipient.getWhitelist().contains(sender.getPlayer().getUniqueId())) {
             complete();
             return false;
         } else {

@@ -5,6 +5,9 @@ import me.bubbles.geofind.configs.ConfigManager;
 import me.bubbles.geofind.events.manager.EventManager;
 import me.bubbles.geofind.messages.Messages;
 import me.bubbles.geofind.requests.RequestManager;
+import me.bubbles.geofind.sqlite.BlockDB;
+import me.bubbles.geofind.sqlite.SQLite;
+import me.bubbles.geofind.sqlite.WhitelistDB;
 import me.bubbles.geofind.ticker.Ticker;
 import me.bubbles.geofind.users.UserManager;
 import org.bukkit.entity.Player;
@@ -19,6 +22,9 @@ public final class GeoFind extends JavaPlugin {
     private RequestManager requestManager;
     private Ticker ticker;
     private Messages messages;
+    private SQLite sqLite;
+    private WhitelistDB whitelistDB;
+    private BlockDB blockDB;
 
     @Override
     public void onEnable() {
@@ -31,13 +37,15 @@ public final class GeoFind extends JavaPlugin {
         saveDefaultConfig();
         configManager.addConfig(
                 "config.yml",
-                "messages.yml",
-                "data.yml"
+                "messages.yml"
         );
 
         // MANAGERS
         commandManager=new CommandManager(this);
         eventManager=new EventManager(this);
+        sqLite = new SQLite(this);
+        whitelistDB = new WhitelistDB(sqLite);
+        blockDB = new BlockDB(sqLite);
         userManager=new UserManager(this);
         requestManager=new RequestManager(this);
 
@@ -94,6 +102,12 @@ public final class GeoFind extends JavaPlugin {
     }
     public Ticker getTicker() {
         return ticker;
+    }
+    public WhitelistDB getWhitelistDB() {
+        return whitelistDB;
+    }
+    public BlockDB getBlockDB() {
+        return blockDB;
     }
 
 }

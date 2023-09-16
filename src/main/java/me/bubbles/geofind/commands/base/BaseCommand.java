@@ -46,7 +46,8 @@ public class BaseCommand extends Command {
                     user.sendMessage("%prefix% %primary%You already have an outgoing request!");
                     return true;
                 }
-                plugin.getRequestManager().createRequest(player,Bukkit.getPlayer(args[0]));
+                User user2 = plugin.getUserManager().getUser(Bukkit.getPlayer(args[0]));
+                plugin.getRequestManager().createRequest(player,user2.getPlayer());
                 return true;
             }
             for(Argument argument : getArguments()) { // ARGUMENTS

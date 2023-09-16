@@ -34,7 +34,14 @@ public class Whitelist extends Argument {
             return;
         }
         Player player2 = Bukkit.getPlayer(args[index]);
-        if(user.getWhitelist().contains(Bukkit.getOfflinePlayer(player2.getUniqueId()))) {
+        if(player2.equals(player)) {
+            user.sendMessage("%prefix% %primary%You can't whitelist yourself silly!");
+        }
+        if(user.getBlocklist().contains(player2.getUniqueId())) {
+            user.sendMessage("%prefix% %primary%Remove player from your block list first.");
+            return;
+        }
+        if(user.getWhitelist().contains(player2.getUniqueId())) {
             user.sendMessage("%prefix% %primary%Removed player %secondary%"+args[index]+"%primary%.");
             user.removeFromWhitelist(player2);
             return;
