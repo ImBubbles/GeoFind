@@ -46,7 +46,7 @@ public class Command implements CommandExecutor {
     }
 
     public void setPermission(String permission) {
-        String node = "geofind." + permission;
+        String node = "." + permission;
         this.permission=node;
         this.no_perms=plugin.getMessages().getNoPerms().replace("%node%",node);
     }

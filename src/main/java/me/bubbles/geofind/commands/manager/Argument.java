@@ -1,7 +1,6 @@
 package me.bubbles.geofind.commands.manager;
 
 import me.bubbles.geofind.GeoFind;
-import me.bubbles.geofind.messages.Messages;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
