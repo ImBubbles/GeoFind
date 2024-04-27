@@ -20,11 +20,13 @@ public class RequestManager {
         return requests;
     }
 
-    public Request createRequest(User sender, User recipient) {
-        Request request = new Request(plugin,sender,recipient);
-        requests.add(request);
+    public void registerRequest(Request request) {
+        this.requests.add(request);
         plugin.getTicker().setEnabled(!requests.isEmpty());
-        return request;
+    }
+
+    public Request createRequest(User sender, User recipient) {
+        return new Request(plugin, this, sender,recipient);
     }
 
     public Request createRequest(Player sender, Player recipient) {
