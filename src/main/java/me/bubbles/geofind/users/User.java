@@ -2,6 +2,7 @@ package me.bubbles.geofind.users;
 
 import me.bubbles.geofind.GeoFind;
 import me.bubbles.geofind.requests.Request;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -10,15 +11,23 @@ import java.util.UUID;
 
 public class User {
 
-    private Player player;
+    private UUID uuid;
     private GeoFind plugin;
 
     public User(Player player, GeoFind plugin) {
-        this.player=player;
+        this(player.getUniqueId(), plugin);
+    }
+
+    public User(UUID uuid, GeoFind plugin) {
+        this.uuid=uuid;
         this.plugin=plugin;
     }
 
     public void sendMessage(String message) {
+        Player player = Bukkit.getPlayer(uuid);
+        if(player==null) {
+            return;
+        }
         String newStr = ChatColor.translateAlternateColorCodes('&',message
                 .replace("%name%",player.getName())
                 .replace("%prefix%",plugin.getMessages().getPrefix())
@@ -30,7 +39,7 @@ public class User {
     // GETTERS
 
     public Player getPlayer() {
-        return player;
+        return Bukkit.getPlayer(uuid);
     }
 
     public Request getOutgoingRequest() {
@@ -66,31 +75,31 @@ public class User {
     }
 
     public HashSet<UUID> getWhitelist() {
-        return plugin.getWhitelistDB().getWhitelist(player.getUniqueId());
+        return plugin.getWhitelistDB().getWhitelist(uuid);
     }
 
     public HashSet<UUID> getBlocklist() {
-        return plugin.getBlockDB().getBlocklist(player.getUniqueId());
+        return plugin.getBlockDB().getBlocklist(uuid);
     }
 
     // WHITELIST
 
     public void addToWhitelist(Player player) {
-        plugin.getWhitelistDB().writeEntry(this.player.getUniqueId(), player.getUniqueId());
+        plugin.getWhitelistDB().writeEntry(uuid, player.getUniqueId());
     }
 
     public void removeFromWhitelist(Player player) {
-        plugin.getWhitelistDB().deleteEntry(this.player.getUniqueId(), player.getUniqueId());
+        plugin.getWhitelistDB().deleteEntry(uuid, player.getUniqueId());
     }
 
     // BLOCK LIST
 
     public void addToBlockList(Player player) {
-        plugin.getBlockDB().writeEntry(this.player.getUniqueId(), player.getUniqueId());
+        plugin.getBlockDB().writeEntry(uuid, player.getUniqueId());
     }
 
     public void removeFromBlocklist(Player player) {
-        plugin.getBlockDB().deleteEntry(this.player.getUniqueId(), player.getUniqueId());
+        plugin.getBlockDB().deleteEntry(uuid, player.getUniqueId());
     }
 
 }

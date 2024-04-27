@@ -13,7 +13,9 @@ public class Join extends Event {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
-        plugin.getUserManager().addPlayer(e.getPlayer());
+        if(plugin.getUserManager().getUser(e.getPlayer())==null) {
+            plugin.getUserManager().addPlayer(e.getPlayer());
+        }
     }
 
 }
