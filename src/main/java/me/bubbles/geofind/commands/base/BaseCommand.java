@@ -58,7 +58,7 @@ public class BaseCommand extends Command {
             }
         }
 
-        sender.sendMessage(ChatColor.translateAlternateColorCodes('&',getArgsMessage()));
+        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', getArgsMessage(sender)));
 
         return true;
     }

@@ -65,6 +65,10 @@ public class Argument {
         }
     }
 
+    public String getPermission() {
+        return permission;
+    }
+
     public String getPermissionMsg() {
         return plugin.getMessages().getNoPerms().replace("%node%",permission);
     }

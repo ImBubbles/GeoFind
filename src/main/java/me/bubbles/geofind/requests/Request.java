@@ -98,7 +98,7 @@ public class Request {
     }
 
     public void accept() {
-        recipient.sendMessage("%prefix% %primary%You have accepted the request from %secondary%"+sender.getPlayer().getName()+"%primary%.");
+        //recipient.sendMessage("%prefix% %primary%You have accepted the request from %secondary%"+sender.getPlayer().getName()+"%primary%.");
         complete();
     }
 

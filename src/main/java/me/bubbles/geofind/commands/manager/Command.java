@@ -51,7 +51,7 @@ public class Command implements CommandExecutor {
         this.no_perms=plugin.getMessages().getNoPerms().replace("%node%",node);
     }
 
-    public String getArgsMessage() {
+    public String getArgsMessage(CommandSender commandSender) {
 
         String prefix = plugin.getMessages().getPrefix();
         String pri = plugin.getMessages().getPrimary(); // primary color
@@ -64,7 +64,17 @@ public class Command implements CommandExecutor {
         // IF YOU ARE COPYING MY CODE, REMOVE THIS LINE - THE LINE BELOW IS SPECIFIC TO THIS PLUGIN
         stringBuilder.append("\n").append(pri).append("/").append(getCommand()).append(" ").append(sec).append("<player>");
 
+        boolean isPlayer = commandSender instanceof Player;
+        Player player = isPlayer ? (Player) commandSender : null;
+
         for(Argument arg : arguments) {
+            if(player!=null) {
+                if(arg.getPermission()!=null) {
+                    if(!player.hasPermission(arg.getPermission())) {
+                        continue;
+                    }
+                }
+            }
             String command = "\n" + pri + "/" + getCommand() + sec + " " + arg.getDisplay() + "\n";
             stringBuilder.append(command);
         }

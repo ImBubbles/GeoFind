@@ -29,13 +29,14 @@ public class Whitelist extends Argument {
             user.sendMessage(getArgsMessage());
             return;
         }
-        if(Bukkit.getPlayer(args[index])==null) {
+        Player player2 = Bukkit.getPlayer(args[index]);
+        if(player2==null) {
             user.sendMessage("%prefix% %primary%Could not find player %secondary%"+args[index]+"%primary%.");
             return;
         }
-        Player player2 = Bukkit.getPlayer(args[index]);
         if(player2.equals(player)) {
             user.sendMessage("%prefix% %primary%You can't whitelist yourself silly!");
+            return;
         }
         if(user.getBlocklist().contains(player2.getUniqueId())) {
             user.sendMessage("%prefix% %primary%Remove player from your block list first.");
