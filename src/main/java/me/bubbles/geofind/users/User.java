@@ -42,6 +42,10 @@ public class User {
         return Bukkit.getPlayer(uuid);
     }
 
+    public UUID getUUID() {
+        return this.uuid;
+    }
+
     public Request getOutgoingRequest() {
         for(Request request : plugin.getRequestManager().getRequests()) {
             if(request.getSender().equals(this)) {

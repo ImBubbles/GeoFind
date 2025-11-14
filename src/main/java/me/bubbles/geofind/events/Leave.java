@@ -16,7 +16,7 @@ public class Leave extends Event {
     @EventHandler
     public void onLeave(PlayerQuitEvent e) {
 
-        User user = plugin.getUserManager().getUser(e.getPlayer());
+        User user = plugin.getUserManager().getUser(e.getPlayer().getUniqueId());
 
         if(user.hasOutgoingRequest()) {
             Request request = user.getOutgoingRequest();
@@ -28,6 +28,8 @@ public class Leave extends Event {
                 request.cancel();
             }
         }
+
+        plugin.getUserManager().removeUser(user);
 
     }
 

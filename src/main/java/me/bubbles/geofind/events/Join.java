@@ -2,6 +2,7 @@ package me.bubbles.geofind.events;
 
 import me.bubbles.geofind.GeoFind;
 import me.bubbles.geofind.events.manager.Event;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerJoinEvent;
 
@@ -13,8 +14,9 @@ public class Join extends Event {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
-        if(plugin.getUserManager().getUser(e.getPlayer())==null) {
-            plugin.getUserManager().addPlayer(e.getPlayer());
+        Player player = e.getPlayer();
+        if(plugin.getUserManager().getUser(player)==null) {
+            plugin.getUserManager().addPlayer(player);
         }
     }
 
